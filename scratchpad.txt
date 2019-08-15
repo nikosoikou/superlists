@@ -1,6 +1,17 @@
+Chapter 5. Saving User Input: Testing the Database
+
 - Don't save blank items for every request
 - Code smell: POST test is too long?
 - Display multiple items in the table
 - Clean up after FT runs
 - Support more than one list
+
+Chapter 6. Improving Functional Tests: Ensuring Isolation and Removing Voodoo Sleeps
+- Clean up after FT runs
 - Remove time.sleeps
+
+Chapter 7. Working Incrementally
+- Adjust model so that items are associated with diferent lists
+- Add unique URLs for each list
+- Add a new URL for creating a new list via POST
+- Add URLs for adding a new item to an existing list via POST
