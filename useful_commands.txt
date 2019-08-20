@@ -35,3 +35,7 @@ sudo systemctl enable gunicorn-superlists.nikosoikou.com
 # listening on a socket (instead of on the default port)
 sudo systemctl start gunicorn-superlists.nikosoikou.com
 
+export TAG=$(date +DEPLOYED-%F/%H%M)
+git tag $TAG
+git push origin LIVE $TAG # pushes the tags up
+git log --graph --oneline --decorate
