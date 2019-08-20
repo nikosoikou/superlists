@@ -9,31 +9,29 @@ STAGING_SERVER=superlists-staging.ottg.eu/ python manage.py test functional_test
 
 fab deploy:host=nikos@superlists-staging.nikosoikou.com
 
+# To see nginx errors
+sudo cat /var/log/nginx/error.log.1
+
+Provisioning commands
+1.
 sed "s/SITENAME/superlists.nikosoikou.com/g" source/deploy_tools/nginx.template.conf | sudo tee /etc/nginx/sites-available/superlists.nikosoikou.com
-
+2.
 sudo ln -s ../sites-available/superlists.nikosoikou.com /etc/nginx/sites-enabled/superlists.nikosoikou.com
-
+3.
 sed "s/SITENAME/superlists.nikosoikou.com/g" source/deploy_tools/gunicorn-systemd.template.service | sudo tee /etc/systemd/system/gunicorn-superlists.nikosoikou.com.service
-
-
+4.
 # this command is necessary to tell Systemd to load our new config file (of Systemd for gunicorn)
 sudo systemctl daemon-reload
-
-
+5.
 sudo systemctl reload nginx
-
-
+6.
 # This command tells Systemd to always load our service on boot.
 # More specifically it creates the symlink:
 # /etc/systemd/system/multi-user.target.wants/gunicorn-superlists.nikosoikou.com.service →
 # /etc/systemd/system/gunicorn-superlists.nikosoikou.com.service
 sudo systemctl enable gunicorn-superlists.nikosoikou.com
-
-
+7.
 # this command actually starts our service. In the .service file there is a command to start Gunicorn,
 # listening on a socket (instead of on the default port)
-
 sudo systemctl start gunicorn-superlists.nikosoikou.com
 
-# To find nginx errors
-sudo cat /var/log/nginx/error.log.1
