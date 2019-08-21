@@ -16,3 +16,6 @@ Chapter 7. Working Incrementally
 - Add a new URL for creating a new list via POST
 - Add URLs for adding a new item to an existing list via POST
 - Refactor away some duplication in urls.py
+
+Chapter 13. Validation at the Database Layer
+- Remove hardcoded URLs from views.py
