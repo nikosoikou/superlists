@@ -39,3 +39,7 @@ export TAG=$(date +DEPLOYED-%F/%H%M)
 git tag $TAG
 git push origin LIVE $TAG # pushes the tags up
 git log --graph --oneline --decorate
+
+grep id_new_item functional_tests/test*
+grep -r id_new_item lists/
+grep -Ir item_text lists/
