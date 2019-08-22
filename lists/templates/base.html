@@ -10,25 +10,15 @@
     <div class="container">
 
       <div class="row">
-        <div class="col-md-6 offset-md-3 jumbotron">
+        <div class="col-md-6 col-md-offset-3 jumbotron">
           <div class="text-center">
             <h1>{% block header_text %}{% endblock %}</h1>
             <form method="POST" action="{% block form_action %}{% endblock %}">
+              {{ form.text }}
               {% if error %}
-                {{ form.text }}
-<!--                 <input name="item_text" id="id_new_item"
-                      class="form-control form-control-lg is-invalid"
-                      placeholder="Enter a to-do item" >
- -->
-                <div class="invalid-feedback">
-                  {{ error }}
+                <div class="form-group has-error">
+                  <span class="help-block">{{ error }}</span>
                 </div>
-              {% else %}
-                {{ form.text }}
-<!--                 <input name="item_text" id="id_new_item"
-                      class="form-control form-control-lg"
-                      placeholder="Enter a to-do item" >
- -->
               {% endif %}
               {% csrf_token %}
             </form>
@@ -37,7 +27,7 @@
       </div>
 
       <div class="row">
-        <div class="col-md-6 offset-md-3">
+        <div class="col-md-6 col-md-offset-3">
           {% block table %}
           {% endblock %}
         </div>
