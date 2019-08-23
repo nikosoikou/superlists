@@ -35,6 +35,10 @@ sudo systemctl enable gunicorn-superlists.nikosoikou.com
 # listening on a socket (instead of on the default port)
 sudo systemctl start gunicorn-superlists.nikosoikou.com
 
+# In a following deploy, do
+sudo systemctl restart gunicorn-superlists.nikosoikou.com
+STAGING_SERVER=superlists-staging.nikosoikou.com python manage.py test functional_tests
+
 export TAG=$(date +DEPLOYED-%F/%H%M)
 git tag $TAG
 git push origin LIVE $TAG # pushes the tags up
